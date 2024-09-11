@@ -1,0 +1,114 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Table Example</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+  }
+  .table-container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  .button-delete {
+    background-color: red;
+    width: 105px;
+    height: 40px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 15px;
+    margin-right: 10px;
+    margin-left: 10px;
+    
+  }
+  .button-delete :hover {
+    box-shadow: 0, 0, 0, rgba(0, 0, 0, 0.4);
+  }
+  .button-view {
+    background-color: green;
+    width: 105px;
+    height: 40px;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 15px;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+  .button-view :hover {
+    box-shadow: 0, 0, 0, rgba(0, 0, 0, 0.4);
+  }
+  .button-add{
+    background-color: blue;
+    width: 105px;
+    height: 40px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 15px;
+    margin-right: 10px;
+    margin-left: 10px;
+    
+  }
+ a {
+  text-decoration: none;
+  color: white;
+}
+a:hover{
+  color: black;
+  text-decoration: underline;
+}
+</style>
+</head>
+<body>
+    <h1 class="donor"> DONORS</h1>
+    <div class="table-container">
+      <button class="button-add"><a href="{% url 'Diamond-create account'%}">add donor</a></button>
+      <table>
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for  donor in donors%}
+          <tr>
+            <td>{{ donor.donorID}}</td>
+            <td>{{ donor.username}}</td>
+        
+            <td>
+              <button class="button-delete"> <a  href="{% url 'donordelete' donor.donorID %}">Delete</a></button>
+              
+              <button class="button-view"><a href= "{% url 'donor-details' donor.donorID %}">View</a></button>
+            </td>
+          </tr>
+          {% endfor  %}
+      </tbody>
+    </table>
+  </div>
+
+</body>
+</html>
